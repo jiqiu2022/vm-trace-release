@@ -50,8 +50,8 @@ var soPath = "/data/local/tmp/test.so"; // 示例路径
 var  soPathPtr = Memory.allocUtf8String(soPath);
 var handle = dlopen(soPathPtr, 2);
 
-var vmcalladdr = Module.findExportByName("test.so", 'vm_call');
-var vmcall = new NativeFunction(vmcalladdr, 'pointer', ['pointer', 'pointer', 'uint32','pointer','uint32']);
+var traceaddr = Module.findExportByName("test.so", 'start_trace');
+var trace = new NativeFunction(traceaddr, 'pointer', ['pointer', 'pointer', 'uint32','pointer','uint32']);
 var aimbase =Module.findBaseAddress("libRequestEncoder.so");
 var targetFuncAddr = aimbase.add(0x61bf4);
 console.log(handle);
@@ -60,7 +60,7 @@ Interceptor.replace(targetFuncAddr, new NativeCallback(function (arg0,arg1,arg2,
     var args =[arg0,arg1,arg2,arg3,arg4,arg5];
     var {argsPtr, argNum} = prepareArgs(args);
     var argPtr1 = Memory.allocUtf8String("/data/user/0/com.fenbi.android.leo/log.txt");
-    var res =vmcall(targetFuncAddr, argsPtr,argNum,argPtr1,6);
+    var res =trace(targetFuncAddr, argsPtr,argNum,argPtr1,6);
     return ptr(res);
 }, 'pointer', ['pointer','pointer','pointer','pointer','uint32']));
 function call(){
