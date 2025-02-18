@@ -35,7 +35,7 @@ test.so是trace的本体
 ```bash
 adb shell
 su
-setenfoce 0
+setenforce 0
 ```
 
 第四步推送test.so到/data/local/tmp
