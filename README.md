@@ -50,9 +50,9 @@ trace脚本有两种注入方法 attach/spwan
 
 ### attach注入法
 
-首先以文章中的xiaoyuan来做讲解
-
-xiaoyuan带着msao，我们可以使用spwan使用过掉msao的脚本
+首先以文章中的xiaoyuan来做讲解 第一篇文章在此
+https://bbs.kanxue.com/thread-283960.htm 
+xiaoyuan带着msao（见文章），我们可以使用spwan使用过掉msao的脚本
 
 然后在attach注入
 
