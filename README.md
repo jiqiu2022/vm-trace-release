@@ -193,7 +193,7 @@ function hook_soload() {
     var  soPathPtr = Memory.allocUtf8String(soPath);
     var handle = dlopen(soPathPtr, 2);
     console.log(handle);
-    vmtraceAddr = Module.findExportByName("test.so", 'start_trace');
+    vmtraceAddr = Module.findExportByName("test.so", 'vm_call');
     vmtrace = new NativeFunction(vmtraceAddr, 'pointer', ['pointer', 'pointer', 'uint32', 'pointer', 'uint32']);
 
     var isinit = 0;

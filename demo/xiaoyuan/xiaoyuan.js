@@ -50,7 +50,7 @@ var soPath = "/data/local/tmp/test.so"; // 示例路径
 var  soPathPtr = Memory.allocUtf8String(soPath);
 var handle = dlopen(soPathPtr, 2);
 
-var traceaddr = Module.findExportByName("test.so", 'start_trace');
+var traceaddr = Module.findExportByName("test.so", 'vm_call');
 var trace = new NativeFunction(traceaddr, 'pointer', ['pointer', 'pointer', 'uint32','pointer','uint32']);
 var aimbase =Module.findBaseAddress("libRequestEncoder.so");
 var targetFuncAddr = aimbase.add(0x61bf4);
