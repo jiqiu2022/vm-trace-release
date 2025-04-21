@@ -15,7 +15,13 @@ function prepareArgs(args) {
         if (arg instanceof NativePointer) {
             // 如果是 NativePointer，直接使用
             argPtr = arg;
-        } else if (typeof arg === 'number') {
+        }else if(typeof arg === 'object' ){
+            // 如果是对象，直接转换为指针
+            //形如 jstring Java_com_demo_app_genToken(JNIEnv *env, jobject obj, long str)这种registerNative的函数参数对象可以处理
+            argPtr = ptr(arg);
+        }
+    
+        else if (typeof arg === 'number') {
             // 如果是数字，直接转换为指针
             argPtr = ptr(arg);
         } else if (typeof arg === 'string') {
