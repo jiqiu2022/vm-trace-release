@@ -300,7 +300,7 @@ https://github.com/jiqiu2022/Zygisk-MyInjector/blob/main/module/src/main/cpp/hac
 
 检查参数数量等是否传入正确
 
-最后一个参数保证是6 或者0
+注意：最新版本中 openStrLog 已固定为 6，不再需要作为参数传入。现在最后一个参数是 windowSize，用于控制内存扫描窗口大小，默认值为 0x100
 
 ‍
 
@@ -309,3 +309,23 @@ https://github.com/jiqiu2022/Zygisk-MyInjector/blob/main/module/src/main/cpp/hac
 感谢群友提供的图 ！
 
 ​![image](https://qiude1tuchuang.oss-cn-beijing.aliyuncs.com/blog/20250210215551.png)​
+
+## 最新版本更新说明（2025-05-05）
+
+1. `openStrLog` 参数已固定为 6，不再需要作为参数传入
+2. 新增 `windowSize` 参数，用于控制内存扫描窗口大小，默认值为 0x100
+3. 优化了寄存器值变化的格式化输出，使其更易于搜索和分析
+
+### 新版本 vm_call 函数签名
+
+```c
+extern "C" rword vm_call(void *addr, QBDI::rword *args, uint32_t argNum, char *logpath, size_t windowSize = 0x100)
+```
+
+### windowSize 参数说明
+
+`windowSize` 参数控制内存扫描时的窗口大小，较大的值会扫描更多内存区域，可能发现更多字符串，但也会增加扫描时间和日志大小。
+
+- 默认值：0x100（256字节）
+- 推荐值范围：0x100 - 0x1000
+- 对于需要扫描更大内存区域的场景，可以设置更大的值，如 0x200 或 0x400
