@@ -1,5 +1,8 @@
 # 如何开始我们的trace之旅
 
+# 第三方工具推荐
+- 支持本trace格式的分析 https://github.com/bobmis/TraceAnalyzer-main  
+
 # 注意事项
 
 本trace目前仅支持了arm64架构，在一些老的机型上走的是arm32，是无法trace的，后面会优先支持\
